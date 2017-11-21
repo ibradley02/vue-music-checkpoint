@@ -1,6 +1,6 @@
 var express = require('express')
 var bp = require('body-parser')
-var dbConnect = require('./config/mlab/mlab-config')
+var dbConnect = require('./mlab/mlab-config')
 
 var server = express()
 var port = 9001
