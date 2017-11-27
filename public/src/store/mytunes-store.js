@@ -13,6 +13,9 @@ var store = new vuex.Store({
     setResults(state, data){
       console.log(data)
       state.results = data.results
+    },
+    setMyTunes(state, data){
+      state.myTunes = data.results
     }
   },
   actions: {
@@ -26,9 +29,14 @@ var store = new vuex.Store({
     },
     getMyTunes({commit, dispatch}){
       //this should send a get request to your server to return the list of saved tunes
+      $.get('http://localhost:9001/api/songs')
+        .then(data => {
+          commit('setMyTunes', data)
+        })
     },
-    addToMyTunes({commit, dispatch}, trackId){
-      $.post('http://localhost:9001/api/songs', trackId)
+    addToMyTunes({commit, dispatch}, track){
+      console.log(track)
+      $.post('http://localhost:9001/api/songs', track)
         .then(res => console.log(res))
         .fail(console.error('Oh No!'))
     },

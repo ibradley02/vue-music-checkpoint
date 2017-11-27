@@ -23,9 +23,8 @@ router.get('/api/songs/:id', (req, res, next)=>{
 })
 
 router.post('/api/songs', (req, res, next)=>{
-    req.body.userId = req.session.uid
     Songs.create(req.body)
-        .then(songs => {
+        .then(song => {
             let response = {
                 data: song,
                 message: 'Successfully favorited Song!'
