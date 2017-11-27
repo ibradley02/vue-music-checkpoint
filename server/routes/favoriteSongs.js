@@ -4,7 +4,7 @@ var router = require('express').Router()
 
 router.get('/api/songs', (req, res, next)=>{
     Songs.find({})
-        .then(songss =>{
+        .then(songs =>{
             res.send(songs)
         })
         .catch(err =>{
@@ -25,7 +25,7 @@ router.get('/api/songs/:id', (req, res, next)=>{
 router.post('/api/songs', (req, res, next)=>{
     req.body.userId = req.session.uid
     Songs.create(req.body)
-        .then(song => {
+        .then(songs => {
             let response = {
                 data: song,
                 message: 'Successfully favorited Song!'
@@ -52,7 +52,7 @@ router.put('/api/songs/:id', (req, res, next)=>{
 
 router.delete('/api/songs/:id', (req, res, next)=>{
     Songs.findByIdAndRemove(req.params.id)
-        .then(()=>{
+        .then(() => {
             res.send({message: 'So much for that song, never liked it much anyway'})
         })
         .catch(err =>{
