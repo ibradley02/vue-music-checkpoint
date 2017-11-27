@@ -38,6 +38,9 @@
                     album: result.collectionName
                 }
                 this.$store.dispatch('addToMyTunes', track)
+            },
+            getMyTunes() {
+                this.$store.dispatch('getMyTunes')
             }
         },
         computed: {

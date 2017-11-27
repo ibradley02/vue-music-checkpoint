@@ -15,7 +15,8 @@ var store = new vuex.Store({
       state.results = data.results
     },
     setMyTunes(state, data){
-      state.myTunes = data.results
+      console.log(data)
+      state.myTunes = data.myTunes
     }
   },
   actions: {
@@ -28,7 +29,6 @@ var store = new vuex.Store({
       })
     },
     getMyTunes({commit, dispatch}){
-      //this should send a get request to your server to return the list of saved tunes
       $.get('http://localhost:9001/api/songs')
         .then(data => {
           commit('setMyTunes', data)
@@ -38,7 +38,6 @@ var store = new vuex.Store({
       console.log(track)
       $.post('http://localhost:9001/api/songs', track)
         .then(res => console.log(res))
-        .fail(console.error('Oh No!'))
     },
     removeTrack({commit, dispatch}, track){
       //Removes track from the database with delete
