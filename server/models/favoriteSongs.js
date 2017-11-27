@@ -1,9 +1,10 @@
 var mongoose = require('mongoose')
 
 var schema = new mongoose.Schema({
-    title: { type: String, required: true },
-    artist: { type: String, required: true },
-    img: { type: String, required: true }
+    trackId: { type: Number, required: true },
+    title: { type: String },
+    artist: { type: String },
+    img: { type: String }
 })
 
-module.exports = mongoose.model('Post', schema)
+module.exports = mongoose.model('Song', schema)

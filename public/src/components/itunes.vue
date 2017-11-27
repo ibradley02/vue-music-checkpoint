@@ -8,7 +8,7 @@
             <div v-for="result in results">
                 <img :src="result.artworkUrl100">
                 <audio class="audio" controls="controls" :src="result.previewUrl"></audio>
-                <button class="btn btn-info" @click="addToMyTunes(i)">Add to Favorites</button>
+                <button class="btn btn-info" @click="addToMyTunes(result.trackId)">Add to Favorites</button>
                 <h1>{{result.trackName}} ${{result.trackPrice}}</h1>
                 <h3>{{result.collectionName}}</h3>
                 <h3>{{result.artistName}}</h3>
@@ -29,8 +29,8 @@
             getMusicByArtist() {
                 this.$store.dispatch('getMusicByArtist', this.artist)
             },
-            addToMyTunes(i) {
-                this.$store.dispatch('addToMyTunes', i)
+            addToMyTunes(track) {
+                this.$store.dispatch('addToMyTunes', track)
             }
         },
         computed: {
