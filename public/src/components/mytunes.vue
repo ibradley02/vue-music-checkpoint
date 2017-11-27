@@ -1,7 +1,6 @@
 <template>
   <div>
     <header>Your Playlist</header>
-    <button @click="getMyTunes">Test</button>
     <div id="songs">
       <div class="card" v-for="tune in myTunes">
         <div class="card-body text-center">
@@ -11,7 +10,7 @@
             ${{tune.price}} {{tune.artist}} {{tune.album}}
           </p>
           <audio class="audio" controls="controls" :src="tune.audio"></audio>
-          <button class="btn btn-danger" @click="removeTrack">Delete</button>
+          <!-- <button class="btn btn-danger" @click="removeTrack">Delete</button> -->
         </div>
       </div>
     </div>
@@ -24,10 +23,8 @@
     data() {
       return {}
     },
-    methods: {
-      getMyTunes() {
-        this.$store.dispatch('getMyTunes')
-      }
+    mounted() {
+      this.$store.dispatch('getMyTunes')
     },
     computed: {
       myTunes() {

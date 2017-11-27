@@ -37,7 +37,10 @@ var store = new vuex.Store({
     addToMyTunes({commit, dispatch}, track){
       console.log(track)
       $.post('http://localhost:9001/api/songs', track)
-        .then(res => console.log(res))
+        .then(res => {
+          dispatch('getMyTunes')
+        })
+
     },
     removeTrack({commit, dispatch}, track){
       //Removes track from the database with delete
