@@ -10,7 +10,7 @@
             ${{tune.price}} {{tune.artist}} {{tune.album}}
           </p>
           <audio class="audio" controls="controls" :src="tune.audio"></audio>
-          <!-- <button class="btn btn-danger" @click="removeTrack">Delete</button> -->
+          <button class="btn btn-danger" @click="removeTrack(tune._id)">Delete</button>
         </div>
       </div>
     </div>
@@ -25,6 +25,11 @@
     },
     mounted() {
       this.$store.dispatch('getMyTunes')
+    },
+    methods: {
+      removeTrack(id) {
+        this.$store.dispatch('removeTrack', id)
+      }
     },
     computed: {
       myTunes() {

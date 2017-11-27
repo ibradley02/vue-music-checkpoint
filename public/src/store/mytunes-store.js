@@ -42,8 +42,14 @@ var store = new vuex.Store({
         })
 
     },
-    removeTrack({commit, dispatch}, track){
-      //Removes track from the database with delete
+    removeTrack({commit, dispatch}, id){
+      $.ajax({
+        url: 'http://localhost:9001/api/songs/' + id,
+        method: 'DELETE'
+      })
+        .then(res => {
+          dispatch('getMyTunes')
+        })
     },
     promoteTrack({commit, dispatch}, track){
       //this should increase the position / upvotes and downvotes on the track
