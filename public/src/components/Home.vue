@@ -50,6 +50,7 @@
     color: white;
     outline: black solid 1px;
     background-color: purple;
+    height: 12vh
   }
   .container-fluid{
     background-color: gray;
