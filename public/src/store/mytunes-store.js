@@ -16,7 +16,7 @@ var store = new vuex.Store({
     },
     setMyTunes(state, data){
       console.log(data)
-      state.myTunes = data.myTunes
+      state.myTunes = data
     }
   },
   actions: {

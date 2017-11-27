@@ -5,7 +5,8 @@ var schema = new mongoose.Schema({
     artist: { type: String },
     img: { type: String },
     album: { type: String },
-    price: { type: Number }
+    price: { type: Number },
+    audio: { type: String }
 })
 
 module.exports = mongoose.model('Song', schema)

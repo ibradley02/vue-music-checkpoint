@@ -1,13 +1,19 @@
 <template>
   <div>
-    <h1>Favorites Playlist</h1>
+    <header>Your Playlist</header>
     <button @click="getMyTunes">Test</button>
-    <div v-for="tune in myTunes">
-        <img :src="tune.artworkUrl100">
-        <!-- <audio class="audio" controls="controls" :src="tune.previewUrl"></audio> -->
-        <h1>{{tune.trackName}} ${{tune.trackPrice}}</h1>
-        <h3>{{tune.collectionName}}</h3>
-        <h3>{{tune.artistName}}</h3>
+    <div id="songs">
+      <div class="card" v-for="tune in myTunes">
+        <div class="card-body text-center">
+          <img class="card-img-top img-responsive center-block" :src="tune.img"></img>
+          <h4 class="card-title">{{tune.title}}</h4>
+          <p class="card-text">
+            ${{tune.price}} {{tune.artist}} {{tune.album}}
+          </p>
+          <audio class="audio" controls="controls" :src="tune.audio"></audio>
+          <button class="btn btn-danger" @click="removeTrack">Delete</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,8 +26,8 @@
     },
     methods: {
       getMyTunes() {
-                this.$store.dispatch('getMyTunes')
-            }
+        this.$store.dispatch('getMyTunes')
+      }
     },
     computed: {
       myTunes() {

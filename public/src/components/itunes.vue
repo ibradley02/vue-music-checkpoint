@@ -1,17 +1,24 @@
 <template>
     <div>
         <div>
-            <form @submit.prevent="getMusicByArtist()">
-                <input type="text" placeholder="Search Artists" v-model="artist">
-                <button type="submit">Search</button>
-            </form>
-            <div v-for="result in results">
-                <img :src="result.artworkUrl100">
-                <audio class="audio" controls="controls" :src="result.previewUrl"></audio>
-                <button class="btn btn-info" @click="addToMyTunes(result)">Add to Favorites</button>
-                <h1>{{result.trackName}} ${{result.trackPrice}}</h1>
-                <h3>{{result.collectionName}}</h3>
-                <h3>{{result.artistName}}</h3>
+            <header>Search Artists:
+                <form class="blacktext" @submit.prevent="getMusicByArtist()">
+                    <input type="text" placeholder="Search Artists" v-model="artist">
+                    <button type="submit">Search</button>
+                </form>
+            </header>
+            <div id="songs">
+                <div class="card" v-for="result in results">
+                    <div class="card-body text-center">
+                        <img class="card-img-top img-responsive center-block" :src="result.artworkUrl100"></img>
+                        <h4 class="card-title">{{result.trackName}}</h4>
+                        <p class="card-text">
+                            ${{result.trackPrice}} {{result.artistName}} {{result.collectionName}}
+                        </p>
+                        <audio class="audio" controls="controls" :src="result.previewUrl"></audio>
+                        <button class="btn btn-info" @click="addToMyTunes(result)">Add to Favorites</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -35,7 +42,8 @@
                     artist: result.artistName,
                     img: result.artworkUrl100,
                     price: result.trackPrice,
-                    album: result.collectionName
+                    album: result.collectionName,
+                    audio: result.previewUrl
                 }
                 this.$store.dispatch('addToMyTunes', track)
             },
